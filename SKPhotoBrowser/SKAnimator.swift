@@ -13,7 +13,7 @@ import UIKit
     func willDismiss(_ browser: SKPhotoBrowser)
 }
 
-class SKAnimator: NSObject, SKPhotoBrowserAnimatorDelegate {
+open class SKAnimator: NSObject, SKPhotoBrowserAnimatorDelegate {
     fileprivate let window = UIApplication.shared.preferredApplicationWindow
     fileprivate var resizableImageView: UIImageView?
     fileprivate var finalImageViewFrame: CGRect = .zero
@@ -26,9 +26,9 @@ class SKAnimator: NSObject, SKPhotoBrowserAnimatorDelegate {
         backgroundView.alpha = 0.0
         return backgroundView
     }()
-    internal var senderOriginImage: UIImage!
+    open var senderOriginImage: UIImage!
     internal var senderViewOriginalFrame: CGRect = .zero
-    internal var senderViewForAnimation: UIView?
+    open var senderViewForAnimation: UIView?
     
     fileprivate var animationDuration: TimeInterval {
         if SKPhotoBrowserOptions.bounceAnimation { return 0.5 }
@@ -48,7 +48,7 @@ class SKAnimator: NSObject, SKPhotoBrowserAnimatorDelegate {
         backgroundView.removeFromSuperview()
     }
     
-    func willPresent(_ browser: SKPhotoBrowser) {
+    public func willPresent(_ browser: SKPhotoBrowser) {
         guard let sender = browser.delegate?.viewForPhoto?(browser, index: browser.currentPageIndex) ?? senderViewForAnimation else {
             presentAnimation(browser)
             return
@@ -77,7 +77,7 @@ class SKAnimator: NSObject, SKPhotoBrowserAnimatorDelegate {
         presentAnimation(browser)
     }
     
-    func willDismiss(_ browser: SKPhotoBrowser) {
+    public func willDismiss(_ browser: SKPhotoBrowser) {
         guard let sender = browser.delegate?.viewForPhoto?(browser, index: browser.currentPageIndex),
             let image = browser.photoAtIndex(browser.currentPageIndex).underlyingImage,
             let scrollView = browser.pageDisplayedAtIndex(browser.currentPageIndex) else {
