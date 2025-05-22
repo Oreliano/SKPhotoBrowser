@@ -29,15 +29,15 @@ open class SKPhotoBrowser: UIViewController {
     // appearance
     fileprivate let bgColor: UIColor = SKPhotoBrowserOptions.backgroundColor
     // animation
-    let animator: SKAnimator = .init()
+    public let animator: SKAnimator = .init()
     
     // child component
     fileprivate var actionView: SKActionView!
     fileprivate(set) var paginationView: SKPaginationView!
-    var toolbar: SKToolbar!
+    open var toolbar: SKToolbar!
 
     // actions
-    fileprivate var activityViewController: UIActivityViewController!
+    open var activityViewController: UIActivityViewController!
     fileprivate var panGesture: UIPanGestureRecognizer?
 
     // for status check property
