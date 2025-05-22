@@ -11,11 +11,11 @@ import UIKit
 // helpers which often used
 private let bundle = Bundle(for: SKPhotoBrowser.self)
 
-class SKToolbar: UIToolbar {
-    var toolActionButton: UIBarButtonItem!
+open class SKToolbar: UIToolbar {
+    open var toolActionButton: UIBarButtonItem!
     fileprivate weak var browser: SKPhotoBrowser?
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -31,7 +31,7 @@ class SKToolbar: UIToolbar {
         setupToolbar()
     }
     
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         if let view = super.hitTest(point, with: event) {
             if SKMesurement.screenWidth - point.x < 50 { // FIXME: not good idea
                 return view
